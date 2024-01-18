@@ -1,21 +1,16 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
+/**
+ * The data structure is described [here](../../../requirements/data/issue.md)
+ */
 export interface IIssue extends Document {
+  id: number;
   title: string;
   description: string;
-  status: 'open' | 'closed';
-  createdAt: Date;
-  updatedAt: Date;
-  tags: string[];
+  
 }
 
 const IssueSchema: Schema = new Schema({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  status: { type: String, enum: ['open', 'closed'], default: 'open' },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now },
-  tags: { type: [String], default: [] },
 });
 
 export default mongoose.model<IIssue>('Issue', IssueSchema);
